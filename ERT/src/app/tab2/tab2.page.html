@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Employee List
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-segment (ionChange)="segmentChanged($event)" color="light">
+        <ion-segment-button value="masters" checked>
+            <ion-label color="dark">All
+                <ion-badge slot="end" *ngIf="masters.employees.length != 0">{{masters.employees.length}}</ion-badge>
+            </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="safeEmployees" color="success">
+            <ion-label color="success">SAFE
+                <ion-badge slot="end" color="success" *ngIf="safeEmployees.employees.length != 0">
+                    {{safeEmployees.employees.length}}</ion-badge>
+            </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="dangerEmployees">
+            <ion-label color="danger">DANGER
+                <ion-badge slot="end" color="danger" *ngIf="dangerEmployees.employees.length != 0">
+                    {{dangerEmployees.employees.length}}</ion-badge>
+            </ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <!-- List of Text Items -->
+
+    <ion-list *ngFor="let emp of newEmployee.employees">
+        <div>
+            <ion-item>
+                <ion-avatar slot="start" class="ios hydrated">
+                    <img [src]="emp.imageUrl">
+                </ion-avatar>
+                <ion-label>
+                    <h2><b>{{ emp.firstName }} {{ emp.lastName }} </b>
+                        <!-- <ion-chip float-right [ngStyle]="{'color':emp.status === 'safe' ? 'green' : 'red' }" class="ion-color ion-color-success ios ion-activatable hydrated"> -->
+                        <ion-chip float-right [ngClass]="{
+                                'safe':emp.status === 'safe',
+                                'danger':emp.status === 'danger',
+                                'unknown':emp.status === 'unknown'
+                            }" class="ion-color ion-color-success ios ion-activatable hydrated">
+                            <ion-label class="sc-ion-label-ios-h sc-ion-label-ios-s ios hydrated">
+                                <span>{{emp.status}}</span>
+                            </ion-label>
+                        </ion-chip>
+                    </h2>
+                    <h5>{{ emp.department }}</h5>
+                </ion-label>
+            </ion-item>
+        </div>
+    </ion-list>
+
+    <!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
+    <!-- <ion-fab class="fab" vertical="bottom" horizontal="start" edge slot="fixed"> -->
+    <ion-fab float-bottom class="fab" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="presentModal()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <!-- <ion-fab-list side="start">
+            <ion-fab-button>
+                <ion-icon name="logo-vimeo"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button >
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list> -->
+    </ion-fab>
+</ion-content>

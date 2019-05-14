@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button size="small" (click)="dismissModal()" float-right
+      class="button button-clear ion-activatable ion-focusable hydrated">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+    <ion-title>Add Employee</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #newEmp="ngForm" (ngSubmit)="save(newEmp.value)">
+    <div class="form-group">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label for="imageUrl" position="floating">Image Url</ion-label>
+            <ion-input #imageUrl="ngModel" (ngModel)="employee.imageUrl" required name="imageUrl" id="imageUrl"
+              type="text">
+            </ion-input>
+          </ion-item>
+          <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+            <div *ngIf="imageUrl.errors.required"></div>
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </div>
+    <ion-row>
+
+      <ion-col>
+        <ion-item>
+          <ion-label for="firstName" position="floating">First Name</ion-label>
+          <ion-input #firstName="ngModel" (ngModel)="employee.firstName" name="firstName" id="firstName" type="text"
+            required>
+          </ion-input>
+
+        </ion-item>
+        <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+          <div *ngIf="firstName.errors.required"></div>
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <ion-label for="lastName" position="floating">Last Name</ion-label>
+          <ion-input #lastName="ngModel" required (ngModel)="employee.lastName" name="lastName" id="lastName"
+            type="text">
+          </ion-input>
+        </ion-item>
+        <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+          <div *ngIf="lastName.errors.required"></div>
+        </div>
+
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+        <ion-label for="gender">Gender</ion-label>
+        <ion-select #gender="ngModel" (ngModel)="employee.gender" required id="gender" name="gender"
+          placeholder="Select one">
+          <ion-select-option value="Female">
+            Female
+          </ion-select-option>
+          <ion-select-option value="Male">Male
+          </ion-select-option>
+        </ion-select>
+        <div class="alert alert-danger" *ngIf="gender.touched && gender.invalid">
+          <div *ngIf="gender.errors.required"></div>
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <ion-label for="dob" position="floating">Birth Date</ion-label>
+          <ion-datetime #dob="ngModel" (ngModel)="employee.dob" id="dob" name="dob" display-format="DD/MM/YYYY"
+            min="1994-03-14" max="2012-12-09" placeholder="MM-DD-YYYY" required>
+          </ion-datetime>
+        </ion-item>
+        <div class="alert alert-danger" *ngIf="dob.touched && dob.invalid">
+          <div *ngIf="dob.errors.required"></div>
+        </div>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-item>
+      <ion-label for="emailId" position="floating">Email Id</ion-label>
+      <ion-input #emailId="ngModel" required (ngModel)="employee.emailId" name="emailId" id="emailId" type="text">
+      </ion-input>
+    </ion-item>
+    <div class="alert alert-danger" *ngIf="emailId.touched && emailId.invalid">
+      <div *ngIf="emailId.errors.required"></div>
+    </div>
+
+    <ion-item>
+      <ion-label for="contactNo" position="floating">Contact No</ion-label>
+      <ion-input #contactNo="ngModel" required (ngModel)="employee.contactId" name="contactNo" id="contactNo"
+        type="text">
+      </ion-input>
+    </ion-item>
+    <div class="alert alert-danger" *ngIf="contactNo.touched && contactNo.invalid">
+      <div *ngIf="contactNo.errors.required"></div>
+    </div>
+
+    <ion-row>
+
+      <ion-col>
+        <ion-item>
+          <ion-label for="designation" position="floating">Designation</ion-label>
+          <ion-input #designation="ngModel" required (ngModel)="employee.designation" name="designation"
+            id="designation" type="text">
+          </ion-input>
+        </ion-item>
+        <div class="alert alert-danger" *ngIf="designation.touched && designation.invalid">
+          <div *ngIf="designation.errors.required"></div>
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <ion-label for="department" position="floating">Department</ion-label>
+          <ion-input #department="ngModel" required (ngModel)="employee.department" name="department" id="department"
+            type="text">
+          </ion-input>
+        </ion-item>
+        <div class="alert alert-danger" *ngIf="department.touched && department.invalid">
+          <div *ngIf="department.errors.required"></div>
+        </div>
+      </ion-col>
+
+    </ion-row>
+    <ion-button (click)="saveEmployee(newEmp.value)" (click)="confirmationMessage()" expand="block">
+      Submit</ion-button>
+  </form>
+</ion-content>
