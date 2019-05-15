@@ -1,4 +1,11 @@
-
-.fab{
+.fab {
     margin-bottom: 20%;
+}
+
+ion-item-sliding {
+    ion-item {
+        ion-label {
+            cursor: pointer;
+        }
+    }
 }

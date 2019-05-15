@@ -1,21 +1,19 @@
 <ion-header>
     <ion-toolbar>
-        <ion-button size="small" href="/" float-right color="light">
-            <ion-icon name="home" padding></ion-icon>
+        <ion-button size="small" (click)="exit()" ion-button round float-right color="danger">
+            <ion-icon size="large" name="close" float-right></ion-icon>
         </ion-button>
         <ion-title>
             ERT
         </ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content>
 
     <!-- Animated Searchbar -->
-    <ion-searchbar animated placeholder="Search Employees"></ion-searchbar>
+    <!-- <ion-searchbar animated placeholder="Search Employees"></ion-searchbar> -->
 
     <ion-card class="welcome-card">
-        <!-- <ion-img src="https://dcassetcdn.com/design_img/1331617/496932/496932_6914130_1331617_533a408a_image.jpg"> -->
         <ion-img src="assets\images\ert_holcim1.png">
         </ion-img>
         <ion-card-header>
@@ -23,7 +21,7 @@
             <ion-card-title>Welcome to ERT</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+            <p>ERT team spends significant time just accounting for people thereby increasing total response time during an emergency. </p>
         </ion-card-content>
     </ion-card>
 

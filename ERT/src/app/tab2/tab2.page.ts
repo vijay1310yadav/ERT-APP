@@ -37,19 +37,42 @@ export class Tab2Page {
   constructor(private empService: EmployeeService, private http: HttpClient, private route: Router,
     private modalController: ModalController) {
 
-    empService.getAllEmployee()
+    // empService.getAllEmployee()
+    //   .subscribe((response: Employee[]) => {
+    //     // console.log(response);
+    //     this.masters.employees = response;
+    //     this.safeEmployees.employees = this.masters.employees.filter(i => i.status == 'safe');
+    //     this.dangerEmployees.employees = this.masters.employees.filter(i => i.status == 'danger');
+
+    //     // console.log(this.safeEmployees.employees, "This is the safe employees list");
+    //     // console.log(this.dangerEmployees.employees, "This is the danger employees list");
+    //     // console.log(this.masters.employees, "This is master.employees, outside the subscribe");
+    //   });
+
+    // this.segmentValue = 'masters';
+
+  }
+
+  ionViewWillEnter() {
+    console.log("This is IonViewWillEnter in tab2");
+    this.empService.getAllEmployee()
       .subscribe((response: Employee[]) => {
         // console.log(response);
         this.masters.employees = response;
         this.safeEmployees.employees = this.masters.employees.filter(i => i.status == 'safe');
         this.dangerEmployees.employees = this.masters.employees.filter(i => i.status == 'danger');
-
+        this.newEmployee.employees = this.masters.employees;
         // console.log(this.safeEmployees.employees, "This is the safe employees list");
         // console.log(this.dangerEmployees.employees, "This is the danger employees list");
         // console.log(this.masters.employees, "This is master.employees, outside the subscribe");
       });
+    this.segmentValue = 'masters';
+  }
+
+  ionViewDidEnter() {
 
   }
+
 
   segmentChanged(value) {
     this.segmentValue = value.detail.value;
@@ -66,6 +89,10 @@ export class Tab2Page {
   }
 
 
+  onDetails(url) {
+    // console.log(url);
+    this.route.navigateByUrl(url);
+  }
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -92,10 +119,6 @@ export class Tab2Page {
   // }
 
 
-  // onDetails(url) {
-  //   // console.log(url);
-  //   this.route.navigateByUrl(url);
-  // }
 
   // onChange(value, empId) {
   //   var temp;

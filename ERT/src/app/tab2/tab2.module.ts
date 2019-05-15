@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EmployeeDetailPage } from '../pages/employee-detail/employee-detail.page';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { EmployeeDetailPage } from '../pages/employee-detail/employee-detail.pag
       //   outlet: 'employee-detail',
       //   component: EmployeeDetailPage
       // }
-    ])
+    ]),
+    Ng2SearchPipeModule
   ],
   declarations: [Tab2Page]
 })

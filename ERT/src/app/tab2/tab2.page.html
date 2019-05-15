@@ -8,6 +8,8 @@
 
 <ion-content padding>
 
+    <ion-searchbar animated [(ngModel)]="searchText" placeholder="Search Names,Status,..."></ion-searchbar>
+
     <ion-segment (ionChange)="segmentChanged($event)" color="light">
         <ion-segment-button value="masters" checked>
             <ion-label color="dark">All
@@ -30,15 +32,15 @@
 
     <!-- List of Text Items -->
 
-    <ion-list *ngFor="let emp of newEmployee.employees">
-        <div>
+    <ion-list *ngFor="let emp of newEmployee.employees | filter:searchText">
+        <div *ngIf="emp.attendance">
             <ion-item>
                 <ion-avatar slot="start" class="ios hydrated">
                     <img [src]="emp.imageUrl">
                 </ion-avatar>
                 <ion-label>
-                    <h2><b>{{ emp.firstName }} {{ emp.lastName }} </b>
-                        <!-- <ion-chip float-right [ngStyle]="{'color':emp.status === 'safe' ? 'green' : 'red' }" class="ion-color ion-color-success ios ion-activatable hydrated"> -->
+                    <h2 (click)="onDetails('tabs/employee-detail/'+ emp.id )"><b>{{ emp.firstName }} {{ emp.lastName }}
+                        </b>
                         <ion-chip float-right [ngClass]="{
                                 'safe':emp.status === 'safe',
                                 'danger':emp.status === 'danger',
@@ -56,18 +58,10 @@
     </ion-list>
 
     <!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
-    <!-- <ion-fab class="fab" vertical="bottom" horizontal="start" edge slot="fixed"> -->
+
     <ion-fab float-bottom class="fab" vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button (click)="presentModal()">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
-        <!-- <ion-fab-list side="start">
-            <ion-fab-button>
-                <ion-icon name="logo-vimeo"></ion-icon>
-            </ion-fab-button>
-            <ion-fab-button >
-                <ion-icon name="add"></ion-icon>
-            </ion-fab-button>
-        </ion-fab-list> -->
     </ion-fab>
 </ion-content>

@@ -39,7 +39,7 @@ export class Tab3Page {
 
   onChange(value, empId) {
     var temp;
-    console.log("This is the value", value);
+    // console.log("This is the value", value);
     this.statusValue = value;
     for (let em of this.employees) {
       for (let value in em) {
@@ -49,7 +49,7 @@ export class Tab3Page {
         }
       }
     }
-    console.log("This is the em " + temp.status);
+    // console.log("This is the em " + temp.status);
 
     temp.status = value;
     this.empService.updateEmployeeStatus(empId, temp);
@@ -69,11 +69,12 @@ export class Tab3Page {
     console.log("Succesfully deleted" + id);
   }
 
+
   ionViewWillEnter() {
     this.emp = this.empService.getAllEmployee();
 
     this.emp.subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.employees = response;
     });
     console.log("This is ionViewWillEnter body");
